@@ -203,7 +203,6 @@ code: |
 
   #baars_cpt_objects = [eval(v) for v in all_variables().keys() if v.startswith('CPT_') or v.startswith('BAARS_')]
   baars_cpt_objects = [
-  
   CPT_DET,
   CPT_OMISSIONS,
   CPT_COMMISSIONS,
@@ -294,7 +293,7 @@ code: |
 
   if user_info().email == 'admin@admin.com':
     USE_DEFAULTS = True
-    default_index = 1
+    default_index = 0
   else:
     USE_DEFAULTS = False 
 
@@ -306,7 +305,7 @@ code: |
       if USE_DEFAULTS:
         defaults = choices[variable.type.lower()][default_index][0]
       else:
-        defaults = ''
+        defaults = None
         
       score_fields.append({ 
         "label": f"""{variable.instanceName.lower().replace('_', ' ')} (lookup: {variable.entry_type}, tab: {variable.type})""", 
@@ -315,7 +314,6 @@ code: |
         "input type": variable.datatype, 
         "choices": choices[variable.type.lower()],
         "help": f"""lookup tab: {variable.type}, variable: {variable.entry_type}""",
-       # "validate": f""
         }
       )
       

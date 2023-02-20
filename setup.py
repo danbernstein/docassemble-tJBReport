@@ -44,7 +44,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.tJBReport',
-      version='0.1.2',
+      version='0.1.3',
       description=("John Bernstein's Report Generator"),
       long_description='# docassemble.Template122722Lines\r\n\r\nTemplate 122722 lines\r\n\r\n## Author\r\n\r\nSystem Administrator\r\n\r\n',
       long_description_content_type='text/markdown',
