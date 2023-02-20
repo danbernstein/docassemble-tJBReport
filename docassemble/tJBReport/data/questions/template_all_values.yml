@@ -1,0 +1,585 @@
+---
+modules:
+  - docassemble.AssemblyLine.al_document
+  - .lookup_values
+---
+metadata:
+  title: |
+    John Bernstein's Report Generator
+  short title: |
+    JB Report Generator
+  authors:
+    - John Bernstein
+---
+mandatory: True
+comment: |
+  Global interview metadata
+variable name: template_122722_lines
+data:
+  al_weaver_version: "playground"
+  generated on: "2022-12-28"
+  title: >-
+    Report Generator
+  short title: >-
+    RG
+  description: |-
+    This web app allows you to input patient information and test scores and it will automatically generate 
+    a report in PDF and DOCX format based on the template you provided.
+  generate download screen: True
+---
+#sections:
+#  - review_template_122722_lines: Review your answers
+#---
+#################### Interview order #####################
+#comment: |
+#  Controls order and branching logic for questions specific to this form
+#id: interview_order_template_122722_lines
+#code: |
+#  #nav.set_section("review_template_122722_lines")
+#  interview_order_template_122722_lines = True
+#---
+###################### Main order ######################
+comment: |
+  This block includes the logic for standalone interviews.
+  Delete mandatory: True to include in another interview
+mandatory: True
+code: |
+  template_122722_lines_intro # intro page
+  #interview_order_template_122722_lines #  input form data
+  answers_reviewed
+  template_122722_lines_download # download the generated report
+---
+### the rest of this code generates the various sections described in the above code block
+comment: |
+  This question is used to introduce your interview. Please customize.
+id: Template_122722_lines
+continue button field: template_122722_lines_intro
+question: |
+  Welcome to PsychDocs
+subquestion: |
+  This web app allows you to input patient information and test scores and it will automatically generate 
+    a report in PDF and DOCX format based on the template you provided.
+    
+    Let's start by entering information about the patient.
+subquestion2: |
+  Patient Information
+fields:
+  - "First": FIRST
+  - "Last": LAST
+  - "MPRN": MPRN
+  - "Eval date": EVAL_DATE
+  - "Birth date": BIRTH_DATE
+  - "Age": AGE
+  - "Education": EDUCATION
+  - "Informant first": INFORMANT_FIRST
+  - "Informant relation": INFORMANT_RELATION
+  - "Informant last": INFORMANT_LAST
+---
+####### Set Default Scores for Testing Purposes ###########
+code: |
+  USE_DEFAULTS = True
+  
+  if USE_DEFAULTS:
+    DEFAULT_STANDARD_SCORE = 20
+    DEFAULT_SCALED_SCORE = 1
+    DEFAULT_BDI_SCORE = 1
+    DEFAULT_BAI_SCORE = 1
+    DEFAULT_TSCORE_SCORE = 80
+  else:
+    DEFAULT_STANDARD_SCORE = '' #20
+    DEFAULT_SCALED_SCORE = '' #1
+    DEFAULT_BDI_SCORE = '' #1
+    DEFAULT_BAI_SCORE = '' #1
+    DEFAULT_TSCORE_SCORE = '' #80
+
+---
+mandatory: true
+id: Enter Scaled Scores
+question: |
+  Enter Scores
+fields:  
+  - "WTAR score": WTAR_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+    
+  - "VCI score": VCI_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+  - "PRI score": PRI_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+  - "WMI score": WMI_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+  - "PSI score": PSI_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+  - "IQ score": IQ_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+    
+  - "Similarities score": SIMILARITIES_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Vocabulary score": VOCABULARY_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Information score": INFORMATION_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+    
+  - "Block design score": BLOCK_DESIGN_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Matrix reasoning score": MATRIX_REASONING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Visual puzzles score": VISUAL_PUZZLES_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+    
+  - "Digit span score": DIGIT_SPAN_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Digits forward score": DIGITS_FORWARD_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Digits backward score": DIGITS_BACKWARD_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Digits sequence score": DIGITS_SEQUENCE_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Arithmetic score": ARITHMETIC_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+    
+  - "Symbol search score": SYMBOL_SEARCH_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Coding score": CODING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+    
+  - "Color naming score": COLOR_NAMING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Word reading score": WORD_READING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Inhibition score": INHIBITION_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Inhibition switching score": INHIBITION_SWITCHING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+    
+  - "Trails A score": TRAILS_A_SCORE
+    default: ${ DEFAULT_TSCORE_SCORE }
+  - "Trails B score": TRAILS_B_SCORE
+    default: ${ DEFAULT_TSCORE_SCORE }
+    
+  - "CVLT trial 1 score": CVLT_TRIAL_1_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT trial 2 score": CVLT_TRIAL_2_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT trial 3 score": CVLT_TRIAL_3_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT trial 4 score": CVLT_TRIAL_4_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT Trial 5 Score": CVLT_TRIAL_5_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT List A total score": CVLT_TOTAL_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT list B score": CVLT_LIST_B_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT short delay free score": CVLT_SHORT_DELAY_FREE_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT short delay cued score": CVLT_SHORT_DELAY_CUED_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT long delay free score": CVLT_LONG_DELAY_FREE_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT Long Delay Cued Score": CVLT_LONG_DELAY_CUED_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT correct recognition hits score": CVLT_CORRECT_RECOGNITION_HITS_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "CVLT false positives score": CVLT_FALSE_POSITIVES_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+
+  - "Logical Memory I score": LOGICAL_MEMORY_I_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }
+  - "Logical memory ii score": LOGICAL_MEMORY_II_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Logical Memory Recognition Score": LOGICAL_MEMORY_RECOGNITION_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+
+  - "RCFT immediate score": RCFT_IMMEDIATE_SCORE
+    default: ${ DEFAULT_TSCORE_SCORE }
+  - "RCFT delayed score": RCFT_DELAYED_SCORE
+    default: ${ DEFAULT_TSCORE_SCORE }
+  - "RCFT True Positives Score": RCFT_TRUE_POSITIVES_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }     
+  - "RCFT False Positives Score": RCFT_FALSE_POSITIVES_SCORE
+    default: ${ DEFAULT_STANDARD_SCORE }   
+
+  - "Letter fluency score": LETTER_FLUENCY_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }    
+  - "Category fluency score": CATEGORY_FLUENCY_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Category switching score": CATEGORY_SWITCHING_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+  - "Category switching accuracy score": CATEGORY_SWITCHING_ACCURACY_SCORE
+    default: ${ DEFAULT_SCALED_SCORE }
+
+  - "RCFT Copy Score": RCFT_COPY_SCORE
+    default: ${ DEFAULT_TSCORE_SCORE }  
+
+
+# BAARS variables have been removed until we know how to handle these self-reported scores
+  #- "BAARS Hyperactivity Adult Score": BAARS_HYPERACTIVITY_ADULT_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Hyperactivity Child Score": BAARS_HYPERACTIVITY_CHILD_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Impulsivity Adult Score": BAARS_IMPULSIVITY_ADULT_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Inattention Adult Score": BAARS_INATTENTION_ADULT_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Inattention Child Score": BAARS_INATTENTION_CHILD_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Sluggish Adult Score": BAARS_SLUGGISH_ADULT_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Total Adult Score": BAARS_TOTAL_ADULT_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  #- "BAARS Total Child Score": BAARS_TOTAL_CHILD_SCORE
+  #  default: ${ DEFAULT_STANDARD_SCORE }
+  
+  - "BDI score": BDI_SCORE
+    default: ${ DEFAULT_BDI_SCORE }
+  - "BAI score": BAI_SCORE
+    default: ${ DEFAULT_BAI_SCORE }
+
+---
+################### CALCULATIONS ########################################
+code: |
+  WTAR_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+  WTAR_QUAL = get_score(value=WTAR_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: | 
+  ARITHMETIC_PERCENT = get_score(value=ARITHMETIC_SCORE, tab_name='scaled')
+  ARITHMETIC_QUAL = get_score(value=ARITHMETIC_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+### REMOVING BAARS until we know how to handle these self-reported scores
+#code: |
+#  BAARS_HYPERACTIVITY_ADULT_PERCENT = get_score(value=BAARS_HYPERACTIVITY_ADULT_SCORE, tab_name='standard')
+#  BAARS_HYPERACTIVITY_ADULT_QUAL = get_score(value=BAARS_HYPERACTIVITY_ADULT_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#
+#  BAARS_HYPERACTIVITY_CHILD_PERCENT = get_score(value=BAARS_HYPERACTIVITY_CHILD_SCORE, tab_name='standard')
+#  BAARS_HYPERACTIVITY_CHILD_QUAL = get_score(value=BAARS_HYPERACTIVITY_CHILD_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_IMPULSIVITY_ADULT_PERCENT = get_score(value=BAARS_IMPULSIVITY_ADULT_SCORE, tab_name='standard')
+#  BAARS_IMPULSIVITY_ADULT_QUAL = get_score(value=BAARS_IMPULSIVITY_ADULT_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_INATTENTION_ADULT_PERCENT = get_score(value=BAARS_INATTENTION_ADULT_SCORE, tab_name='standard')
+#  BAARS_INATTENTION_ADULT_QUAL = get_score(value=BAARS_INATTENTION_ADULT_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_INATTENTION_CHILD_PERCENT = get_score(value=BAARS_INATTENTION_CHILD_SCORE, tab_name='standard')
+#  BAARS_INATTENTION_CHILD_QUAL = get_score(value=BAARS_INATTENTION_CHILD_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_SLUGGISH_ADULT_PERCENT = get_score(value=BAARS_SLUGGISH_ADULT_SCORE, tab_name='standard')
+#  BAARS_SLUGGISH_ADULT_QUAL = get_score(value=BAARS_SLUGGISH_ADULT_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_TOTAL_ADULT_PERCENT = get_score(value=BAARS_TOTAL_ADULT_SCORE, tab_name='standard')
+#  BAARS_TOTAL_ADULT_QUAL = get_score(value=BAARS_TOTAL_ADULT_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#  
+#  BAARS_TOTAL_CHILD_PERCENT = get_score(value=BAARS_TOTAL_CHILD_SCORE, tab_name='standard')
+#  BAARS_TOTAL_CHILD_QUAL = get_score(value=BAARS_TOTAL_CHILD_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+#---
+code: |
+  BAI_QUAL = get_score(value=BAI_SCORE, tab_name='bai', lookup_variable='bai', return_variable='classification') #TODO: whats the associated SCORE?
+  
+  BDI_QUAL = get_score(value=BDI_SCORE, tab_name='bdi', lookup_variable='bdi', return_variable='classification') #TODO: whats the associated SCORE?
+---
+code: |
+  BLOCK_DESIGN_PERCENT = get_score(value=BLOCK_DESIGN_SCORE, tab_name='scaled')
+  BLOCK_DESIGN_QUAL = get_score(value=BLOCK_DESIGN_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  CATEGORY_FLUENCY_PERCENT = get_score(value=CATEGORY_FLUENCY_SCORE, tab_name='scaled')
+  CATEGORY_FLUENCY_QUAL = get_score(value=CATEGORY_FLUENCY_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  CATEGORY_SWITCHING_ACCURACY_PERCENT = get_score(value=CATEGORY_SWITCHING_ACCURACY_SCORE, tab_name='scaled')
+  CATEGORY_SWITCHING_ACCURACY_QUAL = get_score(value=CATEGORY_SWITCHING_ACCURACY_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CATEGORY_SWITCHING_PERCENT = get_score(value=CATEGORY_SWITCHING_SCORE, tab_name='scaled')
+  CATEGORY_SWITCHING_QUAL = get_score(value=CATEGORY_SWITCHING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  CODING_PERCENT = get_score(value=CODING_SCORE, tab_name='scaled')
+  CODING_QUAL = get_score(value=CODING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  COLOR_NAMING_PERCENT = get_score(value=COLOR_NAMING_SCORE, tab_name='scaled')
+  COLOR_NAMING_QUAL = get_score(value=COLOR_NAMING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+---
+code: |
+  CVLT_TOTAL_PERCENT = get_score(value=CVLT_TOTAL_SCORE, tab_name='scaled') # TODO: pairing?
+  CVLT_TOTAL_QUAL = get_score(value=CVLT_TOTAL_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  CVLT_CORRECT_RECOGNITION_HITS_PERCENT = get_score(value=CVLT_CORRECT_RECOGNITION_HITS_SCORE, tab_name='scaled')
+  CVLT_CORRECT_RECOGNITION_HITS_QUAL = get_score(value=CVLT_CORRECT_RECOGNITION_HITS_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_FALSE_POSITIVES_PERCENT = get_score(value=CVLT_FALSE_POSITIVES_SCORE, tab_name='scaled')
+  CVLT_FALSE_POSITIVES_QUAL = get_score(value=CVLT_FALSE_POSITIVES_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  # TODO: pairings for the below 3?
+  CVLT_LONG_DELAY_FREE_PERCENT = get_score(value=CVLT_LONG_DELAY_FREE_SCORE, tab_name='scaled') 
+  CVLT_LONG_DELAY_FREE_QUAL = get_score(value=CVLT_LONG_DELAY_FREE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  CVLT_SHORT_DELAY_FREE_PERCENT = get_score(value=CVLT_SHORT_DELAY_FREE_SCORE, tab_name='scaled') 
+  CVLT_SHORT_DELAY_FREE_QUAL = get_score(value=CVLT_SHORT_DELAY_FREE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+    
+  CVLT_TOTAL_PERCENT = get_score(value=CVLT_TOTAL_SCORE, tab_name='scaled') 
+  CVLT_TOTAL_QUAL = get_score(value=CVLT_TOTAL_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_LIST_B_PERCENT = get_score(value=CVLT_LIST_B_SCORE, tab_name='scaled')
+  CVLT_LIST_B_QUAL = get_score(value=CVLT_LIST_B_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_LONG_DELAY_CUED_PERCENT = get_score(value=CVLT_LONG_DELAY_CUED_SCORE, tab_name='scaled')
+  CVLT_LONG_DELAY_CUED_QUAL = get_score(value=CVLT_LONG_DELAY_CUED_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  CVLT_LONG_DELAY_FREE_PERCENT = get_score(value=CVLT_LONG_DELAY_FREE_SCORE, tab_name='scaled')
+  CVLT_LONG_DELAY_FREE_QUAL = get_score(value=CVLT_LONG_DELAY_FREE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_SHORT_DELAY_CUED_PERCENT = get_score(value=CVLT_SHORT_DELAY_CUED_SCORE, tab_name='scaled')
+  CVLT_SHORT_DELAY_CUED_QUAL = get_score(value=CVLT_SHORT_DELAY_CUED_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  CVLT_SHORT_DELAY_FREE_PERCENT = get_score(value=CVLT_SHORT_DELAY_FREE_SCORE, tab_name='scaled')
+  CVLT_SHORT_DELAY_FREE_QUAL = get_score(value=CVLT_SHORT_DELAY_FREE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_TRIAL_1_PERCENT = get_score(value=CVLT_TRIAL_1_SCORE, tab_name='scaled')
+  CVLT_TRIAL_1_QUAL = get_score(value=CVLT_TRIAL_1_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_TRIAL_2_PERCENT = get_score(value=CVLT_TRIAL_2_SCORE, tab_name='scaled')
+  CVLT_TRIAL_2_QUAL = get_score(value=CVLT_TRIAL_2_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_TRIAL_3_PERCENT = get_score(value=CVLT_TRIAL_3_SCORE, tab_name='scaled')
+  CVLT_TRIAL_3_QUAL = get_score(value=CVLT_TRIAL_3_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_TRIAL_4_PERCENT = get_score(value=CVLT_TRIAL_4_SCORE, tab_name='scaled')
+  CVLT_TRIAL_4_QUAL = get_score(value=CVLT_TRIAL_4_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  CVLT_TRIAL_5_PERCENT = get_score(value=CVLT_TRIAL_5_SCORE, tab_name='scaled')
+  CVLT_TRIAL_5_QUAL = get_score(value=CVLT_TRIAL_5_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  DIGIT_SPAN_PERCENT = get_score(value=DIGIT_SPAN_SCORE, tab_name='scaled')
+  DIGIT_SPAN_QUAL = get_score(value=DIGIT_SPAN_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  DIGITS_BACKWARD_PERCENT = get_score(value=DIGITS_BACKWARD_SCORE, tab_name='scaled')
+  DIGITS_BACKWARD_QUAL = get_score(value=DIGITS_BACKWARD_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  DIGITS_FORWARD_PERCENT = get_score(value=DIGITS_FORWARD_SCORE, tab_name='scaled')
+  DIGITS_FORWARD_QUAL = get_score(value=DIGITS_FORWARD_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  DIGITS_SEQUENCE_PERCENT = get_score(value=DIGITS_SEQUENCE_SCORE, tab_name='scaled')
+  DIGITS_SEQUENCE_QUAL = get_score(value=DIGITS_SEQUENCE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  INFORMATION_PERCENT = get_score(value=INFORMATION_SCORE, tab_name='scaled')
+  INFORMATION_QUAL = get_score(value=INFORMATION_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  INHIBITION_PERCENT = get_score(value=INHIBITION_SCORE, tab_name='scaled')
+  INHIBITION_QUAL = get_score(value=INHIBITION_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  INHIBITION_SWITCHING_PERCENT = get_score(value=INHIBITION_SWITCHING_SCORE, tab_name='scaled')
+  INHIBITION_SWITCHING_QUAL = get_score(value=INHIBITION_SWITCHING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  LETTER_FLUENCY_PERCENT = get_score(value=LETTER_FLUENCY_SCORE, tab_name='scaled')
+  LETTER_FLUENCY_QUAL = get_score(value=LETTER_FLUENCY_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  LOGICAL_MEMORY_II_PERCENT = get_score(value=LOGICAL_MEMORY_II_SCORE, tab_name='scaled')
+  LOGICAL_MEMORY_II_QUAL = get_score(value=LOGICAL_MEMORY_II_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  LOGICAL_MEMORY_RECOGNITION_PERCENT = get_score(value=LOGICAL_MEMORY_RECOGNITION_SCORE, tab_name='scaled')
+  LOGICAL_MEMORY_RECOGNITION_QUAL = get_score(value=LOGICAL_MEMORY_RECOGNITION_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+---
+mandatory: true
+code: |
+  LOGICAL_MEMORY_I_PERCENT = get_score(value=LOGICAL_MEMORY_I_SCORE, tab_name='standard')
+  LOGICAL_MEMORY_I_QUAL = get_score(value=LOGICAL_MEMORY_I_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  IQ_PERCENT = get_score(value=IQ_SCORE, tab_name='standard')
+  IQ_QUAL = get_score(value=IQ_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  MATRIX_REASONING_PERCENT = get_score(value=MATRIX_REASONING_SCORE, tab_name='scaled')
+  MATRIX_REASONING_QUAL = get_score(value=MATRIX_REASONING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  PRI_PERCENT = get_score(value=PRI_SCORE, tab_name='standard')
+  PRI_QUAL = get_score(value=PRI_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  PSI_PERCENT = get_score(value=PSI_SCORE, tab_name='standard')
+  PSI_QUAL = get_score(value=PSI_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  RCFT_COPY_PERCENT = get_score(value=RCFT_COPY_SCORE, tab_name='t score')
+  RCFT_COPY_QUAL = get_score(value=RCFT_COPY_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  RCFT_DELAYED_PERCENT = get_score(value=RCFT_DELAYED_SCORE, tab_name='t score')
+  RCFT_DELAYED_QUAL = get_score(value=RCFT_DELAYED_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+
+  #RCFT_DELAYED_PERCENT = get_score(value=RCFT_DELAYED_SCORE, tab_name='t score')   #RCFT_DELAYED_QUAL = get_score(value=RCFT_DELAYED_PERCENT, #tab_name='classification', lookup_variable='percent', #return_variable='classification')
+  
+  RCFT_FALSE_POSITIVES_PERCENT = get_score(value=RCFT_FALSE_POSITIVES_SCORE, tab_name='standard') 
+  RCFT_FALSE_POSITIVES_QUAL = get_score(value=RCFT_FALSE_POSITIVES_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  RCFT_IMMEDIATE_PERCENT = get_score(value=RCFT_IMMEDIATE_SCORE, tab_name='t score')
+  RCFT_IMMEDIATE_QUAL = get_score(value=RCFT_IMMEDIATE_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  RCFT_TRUE_POSITIVES_PERCENT = get_score(value=RCFT_TRUE_POSITIVES_SCORE, tab_name='standard')
+  RCFT_TRUE_POSITIVES_QUAL = get_score(value=RCFT_TRUE_POSITIVES_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  SIMILARITIES_PERCENT = get_score(value=SIMILARITIES_SCORE, tab_name='scaled')
+  SIMILARITIES_QUAL = get_score(value=SIMILARITIES_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  SYMBOL_SEARCH_PERCENT = get_score(value=SYMBOL_SEARCH_SCORE, tab_name='scaled')
+  SYMBOL_SEARCH_QUAL = get_score(value=SYMBOL_SEARCH_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  TRAILS_A_PERCENT = get_score(value=TRAILS_A_SCORE, tab_name='t score')
+  TRAILS_A_QUAL = get_score(value=TRAILS_A_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+  
+  TRAILS_B_PERCENT = get_score(value=TRAILS_B_SCORE, tab_name='t score')
+  TRAILS_B_QUAL = get_score(value=TRAILS_B_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  VCI_PERCENT = get_score(value=VCI_SCORE, tab_name='standard')
+  VCI_QUAL = get_score(value=VCI_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  VISUAL_PUZZLES_PERCENT = get_score(value=VISUAL_PUZZLES_SCORE, tab_name='scaled')
+  VISUAL_PUZZLES_QUAL = get_score(value=VISUAL_PUZZLES_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  VOCABULARY_PERCENT = get_score(value=VOCABULARY_SCORE, tab_name='scaled')
+  VOCABULARY_QUAL = get_score(value=VOCABULARY_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  WMI_PERCENT = get_score(value=WMI_SCORE, tab_name='standard')
+  WMI_QUAL = get_score(value=WMI_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+code: |
+  WORD_READING_PERCENT = get_score(value=WORD_READING_SCORE, tab_name='scaled')
+  WORD_READING_QUAL = get_score(value=WORD_READING_PERCENT, tab_name='classification', lookup_variable='percent', return_variable='classification')
+---
+################ Prepare the Form Data for Review ######################
+#id: template 122722 lines review screen
+#event: review_template_122722_lines
+
+#skip undefined: False
+
+#continue button field: answers_reviewed
+
+---
+################# FINAL DOWNLOAD PAGE ###########################
+id: download template_122722_lines
+event: template_122722_lines_download
+question: |
+  All done
+subquestion: |
+  Thank you. Your form is ready to download and deliver.
+  
+  View, download and send your form below. Click the "Edit answers" button to fix any mistakes.
+
+  ${ action_button_html(url_action('review_answers'), label='Edit answers', color='info') }
+  
+  PDF
+  
+  ${ al_user_bundle.download_list_html(format='pdf') }
+  
+
+  Word Doc
+  
+  ${ al_user_bundle.download_list_html(format='docx') }
+  
+
+  ${ al_user_bundle.send_button_html(show_editable_checkbox=True) }
+
+progress: 100
+---
+# ALDocument objects specify the metadata for each template
+objects:
+  - template_122722_lines_attachment: ALDocument.using(title="Template 122722 lines", filename="template_122722_lines", enabled=True, has_addendum=False, )
+---
+# Bundles group the ALDocuments into separate downloads, such as for court and for the user
+objects:
+  - al_user_bundle: ALDocumentBundle.using(elements=[template_122722_lines_attachment], filename="template_122722_lines", title="All forms to download for your records", enabled=True, zip_label='', get_email_copy='', include_editable_documents='')
+---
+# Each attachment defines a key in an ALDocument. We use `i` as the placeholder here so the same template is 
+# used for "preview" and "final" keys, and logic in the template checks the value of 
+# `i` to show or hide the user's signature
+---
+attachment:
+  name: template 122722 lines
+  filename: template_122722_lines
+  variable name: template_122722_lines_attachment[i]
+  skip undefined: False # setting to False ensures all questions about defining variables are asked before getting to this screen
+  docx template file: template_empty_BAARS.docx
+---
+mandatory: true
+event: review_answers
+continue button field: answers_reviewed
+question: |
+  Review your data.
+subquestion: |
+  Please review the table below to confirm that everything looks good before we generate your document. If there are any issues with the values that you inputted, please go back and change them. If there are any issues with the calculated values, please contact the developer to have them fixed.
+  
+  _Patient Info:_
+  
+  Variable|Value
+  ------|----
+  First Name | ${ FIRST }
+  Last Name | ${ LAST }
+  Age| ${ AGE }
+  Date of Birth | ${ BIRTH_DATE }
+  Education Level | ${ EDUCATION }
+  Evaluation Date | ${ EVAL_DATE }
+  MPRN | ${ MPRN }
+  Informant First Name| ${ INFORMANT_FIRST }
+  Informant Last Name| ${ INFORMANT_LAST }
+  Informant Relation | ${ INFORMANT_RELATION }
+
+  
+  _Scores:_
+  
+  Variable|Score|Percentile|Qualification|
+  ----------|-------|------------|--------------
+  WTAR score | ${ WTAR_SCORE } | ${ WTAR_PERCENT } | ${ WTAR_QUAL }
+  VCI score | ${ VCI_SCORE } | ${ VCI_PERCENT } | ${ VCI_QUAL }
+  PRI score | ${ PRI_SCORE } | ${ PRI_PERCENT } | ${ PRI_QUAL }
+  WMI score | ${ WMI_SCORE } | ${ WMI_PERCENT } | ${ WMI_QUAL }
+  PSI score | ${ PSI_SCORE } | ${ PSI_PERCENT } | ${ PSI_QUAL }
+  IQ score | ${ IQ_SCORE } | ${ IQ_PERCENT } | ${ IQ_QUAL }
+  Similarities score | ${ SIMILARITIES_SCORE } | ${ SIMILARITIES_PERCENT } | ${ SIMILARITIES_QUAL }
+  Vocabulary score | ${ VOCABULARY_SCORE } | ${ VOCABULARY_PERCENT } | ${ VOCABULARY_QUAL }
+  Information score | ${ INFORMATION_SCORE } | ${ INFORMATION_PERCENT } | ${ INFORMATION_QUAL }
+  Block design score | ${ BLOCK_DESIGN_SCORE } | ${ BLOCK_DESIGN_PERCENT } | ${ BLOCK_DESIGN_QUAL }
+  Matrix reasoning score | ${ MATRIX_REASONING_SCORE } | ${ MATRIX_REASONING_PERCENT } | ${ MATRIX_REASONING_QUAL }
+  Visual puzzles score | ${ VISUAL_PUZZLES_SCORE } | ${ VISUAL_PUZZLES_PERCENT } | ${ VISUAL_PUZZLES_QUAL }
+  Digit span score | ${ DIGIT_SPAN_SCORE } | ${ DIGIT_SPAN_PERCENT } | ${ DIGIT_SPAN_QUAL }
+  Digits forward score | ${ DIGITS_FORWARD_SCORE } | ${ DIGITS_FORWARD_PERCENT } | ${ DIGITS_FORWARD_QUAL }
+  Digits backward score | ${ DIGITS_BACKWARD_SCORE } | ${ DIGITS_BACKWARD_PERCENT } | ${ DIGITS_BACKWARD_QUAL }
+  Digits sequence score | ${ DIGITS_SEQUENCE_SCORE } | ${ DIGITS_SEQUENCE_PERCENT } | ${ DIGITS_SEQUENCE_QUAL }
+  Arithmetic score | ${ ARITHMETIC_SCORE } | ${ ARITHMETIC_PERCENT } | ${ ARITHMETIC_QUAL }
+  Symbol search score | ${ SYMBOL_SEARCH_SCORE } | ${ SYMBOL_SEARCH_PERCENT } | ${ SYMBOL_SEARCH_QUAL }
+  Coding score | ${ CODING_SCORE } | ${ CODING_PERCENT } | ${ CODING_QUAL }
+  Color naming score | ${ COLOR_NAMING_SCORE } | ${ COLOR_NAMING_PERCENT } | ${ COLOR_NAMING_QUAL }
+  Word reading score | ${ WORD_READING_SCORE } | ${ WORD_READING_PERCENT } | ${ WORD_READING_QUAL }
+  Inhibition score | ${ INHIBITION_SCORE } | ${ INHIBITION_PERCENT } | ${ INHIBITION_QUAL }
+  Inhibition switching score | ${ INHIBITION_SWITCHING_SCORE } | ${ INHIBITION_SWITCHING_PERCENT } | ${ INHIBITION_SWITCHING_QUAL }
+  Trails A score | ${ TRAILS_A_SCORE } | ${ TRAILS_A_PERCENT } | ${ TRAILS_A_QUAL }
+  Trails B score | ${ TRAILS_B_SCORE } | ${ TRAILS_B_PERCENT } | ${ TRAILS_B_QUAL }
+  CVLT trial 1 score | ${ CVLT_TRIAL_1_SCORE } | ${ CVLT_TRIAL_1_PERCENT } | ${ CVLT_TRIAL_1_QUAL }
+  CVLT trial 2 score | ${ CVLT_TRIAL_2_SCORE } | ${ CVLT_TRIAL_2_PERCENT } | ${ CVLT_TRIAL_2_QUAL }
+  CVLT trial 3 score | ${ CVLT_TRIAL_3_SCORE } | ${ CVLT_TRIAL_3_PERCENT } | ${ CVLT_TRIAL_3_QUAL }
+  CVLT trial 4 score | ${ CVLT_TRIAL_4_SCORE } | ${ CVLT_TRIAL_4_PERCENT } | ${ CVLT_TRIAL_4_QUAL }
+  CVLT Trial 5 score | ${ CVLT_TRIAL_5_SCORE } | ${ CVLT_TRIAL_5_PERCENT } | ${ CVLT_TRIAL_5_QUAL }
+  CVLT List A total score | ${ CVLT_TOTAL_SCORE } | ${ CVLT_TOTAL_PERCENT } | ${ CVLT_TOTAL_QUAL }
+  CVLT list B score | ${ CVLT_LIST_B_SCORE } | ${ CVLT_LIST_B_PERCENT } | ${ CVLT_LIST_B_QUAL }
+  CVLT short delay free score | ${ CVLT_SHORT_DELAY_FREE_SCORE } | ${ CVLT_SHORT_DELAY_FREE_PERCENT } | ${ CVLT_SHORT_DELAY_FREE_QUAL }
+  CVLT short delay cued score | ${ CVLT_SHORT_DELAY_CUED_SCORE } | ${ CVLT_SHORT_DELAY_CUED_PERCENT } | ${ CVLT_SHORT_DELAY_CUED_QUAL }
+  CVLT long delay free score | ${ CVLT_LONG_DELAY_FREE_SCORE } | ${ CVLT_LONG_DELAY_FREE_PERCENT } | ${ CVLT_LONG_DELAY_FREE_QUAL }
+  CVLT Long Delay Cued score | ${ CVLT_LONG_DELAY_CUED_SCORE } | ${ CVLT_LONG_DELAY_CUED_PERCENT } | ${ CVLT_LONG_DELAY_CUED_QUAL }
+  CVLT correct recognition hits score | ${ CVLT_CORRECT_RECOGNITION_HITS_SCORE } | ${ CVLT_CORRECT_RECOGNITION_HITS_PERCENT } | ${ CVLT_CORRECT_RECOGNITION_HITS_QUAL }
+  CVLT false positives score | ${ CVLT_FALSE_POSITIVES_SCORE } | ${ CVLT_FALSE_POSITIVES_PERCENT } | ${ CVLT_FALSE_POSITIVES_QUAL }
+  Logical Memory I score | ${ LOGICAL_MEMORY_I_SCORE } | ${ LOGICAL_MEMORY_I_PERCENT } | ${ LOGICAL_MEMORY_I_QUAL }
+  Logical memory ii score | ${ LOGICAL_MEMORY_II_SCORE } | ${ LOGICAL_MEMORY_II_PERCENT } | ${ LOGICAL_MEMORY_II_QUAL }
+  Logical Memory Recognition score | ${ LOGICAL_MEMORY_RECOGNITION_SCORE } | ${ LOGICAL_MEMORY_RECOGNITION_PERCENT } | ${ LOGICAL_MEMORY_RECOGNITION_QUAL }
+  RCFT immediate score | ${ RCFT_IMMEDIATE_SCORE } | ${ RCFT_IMMEDIATE_PERCENT } | ${ RCFT_IMMEDIATE_QUAL }
+  RCFT delayed score | ${ RCFT_DELAYED_SCORE } | ${ RCFT_DELAYED_PERCENT } | ${ RCFT_DELAYED_QUAL }
+  RCFT True Positives score | ${ RCFT_TRUE_POSITIVES_SCORE } | ${ RCFT_TRUE_POSITIVES_PERCENT } | ${ RCFT_TRUE_POSITIVES_QUAL }
+  RCFT False Positives score | ${ RCFT_FALSE_POSITIVES_SCORE } | ${ RCFT_FALSE_POSITIVES_PERCENT } | ${ RCFT_FALSE_POSITIVES_QUAL }
+  Letter fluency score | ${ LETTER_FLUENCY_SCORE } | ${ LETTER_FLUENCY_PERCENT } | ${ LETTER_FLUENCY_QUAL }
+  Category fluency score | ${ CATEGORY_FLUENCY_SCORE } | ${ CATEGORY_FLUENCY_PERCENT } | ${ CATEGORY_FLUENCY_QUAL }
+  Category switching score | ${ CATEGORY_SWITCHING_SCORE } | ${ CATEGORY_SWITCHING_PERCENT } | ${ CATEGORY_SWITCHING_QUAL }
+  Category switching accuracy score | ${ CATEGORY_SWITCHING_ACCURACY_SCORE } | ${ CATEGORY_SWITCHING_ACCURACY_PERCENT } | ${ CATEGORY_SWITCHING_ACCURACY_QUAL }
+  RCFT Copy score | ${ RCFT_COPY_SCORE } | ${ RCFT_COPY_PERCENT } | ${ RCFT_COPY_QUAL }

@@ -1,0 +1,19 @@
+---
+code: |
+  fieldies = """
+    - 'a': b
+    - 'c': d"""
+  
+---
+question: enter scores.
+fields: ${fieldies}
+
+---
+mandatory: true
+event: review_answers
+continue button field: answers_reviewed
+question: |
+  Review your data.
+subquestion: |
+  Please review the table below to confirm that everything looks good before we generate your document. If there are any issues with the values that you inputted, please go back and change them. If there are any issues with the calculated values, please contact the developer to have them fixed.
+  ${b}

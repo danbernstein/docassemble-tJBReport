@@ -1,0 +1,46 @@
+sections:
+ # - intro: Introduction
+  - patient_info: Enter Patient Info
+  - scores: Enter Scores
+  - review: Review Answers
+  - download: Download Document
+---
+modules:
+#  - docassemble.AssemblyLine.al_document
+  - .lookup_values
+---
+include:
+  - report_metadata.yml
+---
+on change:
+  LAST: |
+    set_parts(title='Report: ' + FIRST + ' ' + LAST)
+---
+features:
+  navigation: True
+ # progress bar: True
+---
+metadata:
+  title: |
+    John Bernstein's Report Generator
+  short title: |
+    JB Report Generator
+  authors:
+    - John Bernstein
+---
+mandatory: True
+comment: |
+  Global interview metadata
+variable name: new_report
+data:
+  al_weaver_version: "playground"
+  generated on: "2022-12-28"
+  title: >-
+    Report Generator
+  short title: >-
+    RG
+  description: |-
+    This web app allows you to input patient information and test scores and it will automatically generate 
+    a report in PDF and DOCX format based on the template you provided.
+  generate download screen: True
+---

@@ -1,0 +1,444 @@
+---
+sections:
+ # - intro: Introduction
+  - patient_info: Enter Patient Info
+  - scores: Enter Scores
+  - review: Review Answers
+  - download: Download Document
+---
+modules:
+  #- docassemble.AssemblyLine.al_document
+  - .lookup_values
+  - .da_score
+  - .al_document_custom # using a custom version because the original version does not handle periods in file names well because it assumes that the period indicates the extension
+---
+include:
+  - report_metadata.yml
+---
+on change:
+  LAST: |
+    EVAL_DATE = EVAL_DATE_INPUT.strftime('%-m/%-d/%Y')
+    BIRTH_DATE = BIRTH_DATE_INPUT.strftime('%-m/%-d/%Y')
+
+    eval_date_formatted = EVAL_DATE_INPUT.strftime('%-m.%-d.%y')
+    file_name = f"{FIRST[0].upper()}{LAST[0].upper()}_{eval_date_formatted}"
+
+    set_parts(title=f'Report: {file_name}')
+---
+features:
+  navigation: True
+ # progress bar: True
+---
+###################### Main order ######################
+comment: |
+  This block includes the logic for standalone interviews.
+  Delete mandatory: True to include in another interview
+mandatory: True
+code: |
+  nav.set_section('patient_info')
+  FIRST
+  nav.set_section('scores')
+  
+  if INCLUDE_ACADEMIC_ACHIEVEMENT:
+    nav.set_section('academic_achievement_fields')
+    review_results
+    
+    if move_on:
+      pass
+  
+  if review_results:
+    nav.set_section('review')
+    #review_answers # set a boolean that the answers have been reviewed#
+
+  if download_report:
+    nav.set_section('download')
+    report_download # download the generated report
+
+---
+id: select_report
+field: select_report
+question: What type of report is this?
+buttons:
+  - value: adhd
+    label: ADHD
+    css class: male-button
+    color: info
+  - value: dementia
+    label: Dementia (coming soon)
+    css class: female-button
+    color: danger
+---
+objects:
+  WTAR: DAScore.using(name='WTAR', type='standard')
+  VCI: DAScore.using(name="VCI", type="standard")
+  PRI: DAScore.using(name="PRI", type="standard")
+  WMI: DAScore.using(name="WMI", type="standard")
+  PSI: DAScore.using(name="PSI", type="standard")
+  IQ: DAScore.using(name="IQ", type="standard")
+  SIMILARITIES: DAScore.using(name="SIMILARITIES", type="scaled")
+  VOCABULARY: DAScore.using(name="VOCABULARY", type="scaled")
+  INFORMATION: DAScore.using(name="INFORMATION", type="scaled")
+  BLOCK_DESIGN: DAScore.using(name="BLOCK_DESIGN", type="scaled")
+  MATRIX_REASONING: DAScore.using(name="MATRIX_REASONING", type="scaled")
+  VISUAL_PUZZLES: DAScore.using(name="VISUAL_PUZZLES", type="scaled")
+  DIGIT_SPAN: DAScore.using(name="DIGIT_SPAN", type="scaled")
+  DIGITS_FORWARD: DAScore.using(name="DIGITS_FORWARD", type="scaled")
+  DIGITS_BACKWARD: DAScore.using(name="DIGITS_BACKWARD", type="scaled")
+  DIGITS_SEQUENCE: DAScore.using(name="DIGITS_SEQUENCE", type="scaled")
+  ARITHMETIC: DAScore.using(name="ARITHMETIC", type="scaled")
+  SYMBOL_SEARCH: DAScore.using(name="SYMBOL_SEARCH", type="scaled")
+  CODING: DAScore.using(name="CODING", type="scaled")
+  COLOR_NAMING: DAScore.using(name="COLOR_NAMING", type="scaled")
+  WORD_READING: DAScore.using(name="WORD_READING", type="scaled")
+  INHIBITION: DAScore.using(name="INHIBITION", type="scaled")
+  INHIBITION_SWITCHING: DAScore.using(name="INHIBITION_SWITCHING", type="scaled")
+  TRAILS_A: DAScore.using(name="TRAILS_A", type="t score")
+  TRAILS_B: DAScore.using(name="TRAILS_B", type="t score")
+  CVLT_TRIAL_1: DAScore.using(name="CVLT_TRIAL_1", type="scaled")
+  CVLT_TRIAL_2: DAScore.using(name="CVLT_TRIAL_2", type="scaled")
+  CVLT_TRIAL_3: DAScore.using(name="CVLT_TRIAL_3", type="scaled")
+  CVLT_TRIAL_4: DAScore.using(name="CVLT_TRIAL_4", type="scaled")
+  CVLT_TRIAL_5: DAScore.using(name="CVLT_TRIAL_5", type="scaled")
+  CVLT_TOTAL: DAScore.using(name="CVLT_TOTAL", type="standard")
+  CVLT_LIST_B: DAScore.using(name="CVLT_LIST_B", type="scaled")
+  CVLT_SHORT_DELAY_FREE: DAScore.using(name="CVLT_SHORT_DELAY_FREE", type="scaled")
+  CVLT_SHORT_DELAY_CUED: DAScore.using(name="CVLT_SHORT_DELAY_CUED", type="scaled")
+  CVLT_LONG_DELAY_FREE: DAScore.using(name="CVLT_LONG_DELAY_FREE", type="scaled")
+  CVLT_LONG_DELAY_CUED: DAScore.using(name="CVLT_LONG_DELAY_CUED", type="scaled")
+  CVLT_CORRECT_RECOGNITION_HITS: DAScore.using(name="CVLT_CORRECT_RECOGNITION_HITS", type="scaled")
+  CVLT_FALSE_POSITIVES: DAScore.using(name="CVLT_FALSE_POSITIVES", type="scaled")
+  LOGICAL_MEMORY_I: DAScore.using(name="LOGICAL_MEMORY_I", type="scaled")
+  LOGICAL_MEMORY_II: DAScore.using(name="LOGICAL_MEMORY_II", type="scaled")
+  LOGICAL_MEMORY_RECOGNITION: DAScore.using(name="LOGICAL_MEMORY_RECOGNITION", type="logicalmemory_recog", entry_type='percentile')
+  RCFT_IMMEDIATE: DAScore.using(name="RCFT_IMMEDIATE", type="t score")
+  RCFT_DELAYED: DAScore.using(name="RCFT_DELAYED", type="t score")  
+  RCFT_TRUE_POSITIVES: DAScore.using(name="RCFT_TRUE_POSITIVES", type="rcft_copy_recog", entry_type='percentile')     
+  RCFT_FALSE_POSITIVES: DAScore.using(name="RCFT_FALSE_POSITIVES", type="rcft_copy_recog", entry_type='percentile')  
+  LETTER_FLUENCY: DAScore.using(name="LETTER_FLUENCY", type="scaled") 
+  CATEGORY_FLUENCY: DAScore.using(name="CATEGORY_FLUENCY", type="scaled")
+  CATEGORY_SWITCHING: DAScore.using(name="CATEGORY_SWITCHING", type="scaled")
+  CATEGORY_SWITCHING_ACCURACY: DAScore.using(name="CATEGORY_SWITCHING_ACCURACY", type="scaled")
+  RCFT_COPY: DAScore.using(name="RCFT_COPY", type="rcft_copy_recog", entry_type='percentile') 
+  BDI: DAScore.using(name="BDI", type="bdi", entry_type='percentile')
+  BAI: DAScore.using(name="BAI", type="bai", entry_type='percentile')
+
+  WJ_READING: DAScore.using(name='WJ_READING', type='standard')
+  WJ_BROADREADING: DAScore.using(name='WJ_BROADREADING', type='standard')
+  WJ_BASICREADING: DAScore.using(name='WJ_BASICREADING', type='standard')
+  WJ_READINGFLUENCY: DAScore.using(name='WJ_READINGFLUENCY', type='standard')
+  WJ_MATH: DAScore.using(name='WJ_MATH', type='standard')
+  WJ_BROADMATH: DAScore.using(name='WJ_BROADMATH', type='standard')
+  WJ_MATHCALC: DAScore.using(name='WJ_MATHCALC', type='standard')
+  WJ_WRITTENLANG: DAScore.using(name='WJ_WRITTENLANG', type='standard')
+  WJ_BROADWRITTENLANG: DAScore.using(name='WJ_BROADWRITTENLANG', type='standard')
+  WJ_WRITTENEXPRESSION: DAScore.using(name='WJ_WRITTENEXPRESSION', type='standard')
+  WJ_ACADEMICSKILLS: DAScore.using(name='WJ_ACADEMICSKILLS', type='standard')
+  WJ_ACADEMICFLUENCY: DAScore.using(name='WJ_ACADEMICFLUENCY', type='standard')
+  WJ_ACADEMICAPPLICATIONS: DAScore.using(name='WJ_ACADEMICAPPLICATIONS', type='standard')
+  WJ_BRIEFACHIEVEMENT: DAScore.using(name='WJ_BRIEFACHIEVEMENT', type='standard')
+  WJ_BROADACHIEVEMENT: DAScore.using(name='WJ_BROADACHIEVEMENT', type='standard')
+  WJ_LETTERWORD: DAScore.using(name='WJ_LETTERWORD', type='standard')
+  WJ_APPLIEDPROBLEMS: DAScore.using(name='WJ_APPLIEDPROBLEMS', type='standard')
+  WJ_SPELLING: DAScore.using(name='WJ_SPELLING', type='standard')
+  WJ_PASSAGECOMP: DAScore.using(name='WJ_PASSAGECOMP', type='standard')
+  WJ_CALCULATION: DAScore.using(name='WJ_CALCULATION', type='standard')
+  WJ_WRITINGSAMPLES: DAScore.using(name='WJ_WRITINGSAMPLES', type='standard')
+  WJ_WORDATTACK: DAScore.using(name='WJ_WORDATTACK', type='standard')
+  WJ_ORALREADING: DAScore.using(name='WJ_ORALREADING', type='standard')
+  WJ_SENTENCEREADING: DAScore.using(name='WJ_SENTENCEREADING', type='standard')
+  WJ_MATHFACTS: DAScore.using(name='WJ_MATHFACTS', type='standard')
+  WJ_SENTENCEWRITING: DAScore.using(name='WJ_SENTENCEWRITING', type='standard')
+  
+  CPT_DET: DAScore.using(name='CPT_DET', type='cpt', score_to_qualifier=True)
+  CPT_OMISSIONS: DAScore.using(type='cpt', score_to_qualifier=True)
+  CPT_COMMISSIONS: DAScore.using(type='cpt', score_to_qualifier=True)
+  CPT_PERSEVERATIONS: DAScore.using(type='cpt', score_to_qualifier=True)
+  CPT_HRT: DAScore.using(type='cpt_hrt', score_to_qualifier=True)   
+  CPT_HRT_STD: DAScore.using(type='cpt', score_to_qualifier=True)   
+  CPT_VAR: DAScore.using(type='cpt', score_to_qualifier=True)    
+  CPT_HRT_BLOCK: DAScore.using(type='cpt', score_to_qualifier=True)   
+  CPT_HRT_ISI: DAScore.using(type='cpt', score_to_qualifier=True)  
+  
+  BAARS_INATTENTION: DAScore.using(type='baars', entry_type='percentile')   
+  BAARS_HYPERACTIVITY: DAScore.using(type='baars', entry_type='percentile')   
+  BAARS_IMPULSIVITY: DAScore.using(type='baars', entry_type='percentile')      
+  BAARS_SLUGGISH: DAScore.using(type='baars', entry_type='percentile')     
+  BAARS_TOTAL: DAScore.using(type='baars', entry_type='percentile')     
+  BAARS_INATTENTION_CHILD: DAScore.using(type='baars', entry_type='percentile')   
+  BAARS_HYPERACTIVITY_CHILD: DAScore.using(type='baars', entry_type='percentile')
+  BAARS_TOTAL_CHILD: DAScore.using(type='baars', entry_type='percentile')   
+---
+code: |
+  variable_objects = [
+  WTAR, VCI,PRI,WMI,PSI,IQ,SIMILARITIES,VOCABULARY,INFORMATION,BLOCK_DESIGN,MATRIX_REASONING,VISUAL_PUZZLES,DIGIT_SPAN,DIGITS_FORWARD,DIGITS_BACKWARD,DIGITS_SEQUENCE,ARITHMETIC,SYMBOL_SEARCH,CODING,COLOR_NAMING,WORD_READING,INHIBITION,INHIBITION_SWITCHING,TRAILS_A,TRAILS_B,CVLT_TRIAL_1,CVLT_TRIAL_2,CVLT_TRIAL_3,CVLT_TRIAL_4,CVLT_TRIAL_5,CVLT_TOTAL,CVLT_LIST_B,CVLT_SHORT_DELAY_FREE,CVLT_SHORT_DELAY_CUED,CVLT_LONG_DELAY_FREE,CVLT_LONG_DELAY_CUED,CVLT_CORRECT_RECOGNITION_HITS,CVLT_FALSE_POSITIVES,LOGICAL_MEMORY_I,LOGICAL_MEMORY_II,LOGICAL_MEMORY_RECOGNITION,RCFT_IMMEDIATE,RCFT_DELAYED,RCFT_TRUE_POSITIVES,RCFT_FALSE_POSITIVES,LETTER_FLUENCY,CATEGORY_FLUENCY,CATEGORY_SWITCHING,CATEGORY_SWITCHING_ACCURACY,RCFT_COPY,BDI,BAI]
+  
+  wj_objects = [WJ_READING,
+  WJ_BROADREADING,
+  WJ_BASICREADING,
+  WJ_READINGFLUENCY,
+  WJ_MATH,
+  WJ_BROADMATH,
+  WJ_MATHCALC,
+  WJ_WRITTENLANG,
+  WJ_BROADWRITTENLANG,
+  WJ_WRITTENEXPRESSION,
+  WJ_ACADEMICSKILLS,
+  WJ_ACADEMICFLUENCY,
+  WJ_ACADEMICAPPLICATIONS,
+  WJ_BRIEFACHIEVEMENT,
+  WJ_BROADACHIEVEMENT,
+  WJ_LETTERWORD,
+  WJ_APPLIEDPROBLEMS,
+  WJ_SPELLING,
+  WJ_PASSAGECOMP,
+  WJ_CALCULATION,
+  WJ_WRITINGSAMPLES,
+  WJ_WORDATTACK,
+  WJ_ORALREADING,
+  WJ_SENTENCEREADING,
+  WJ_MATHFACTS,
+  WJ_SENTENCEWRITING]
+  
+  #wj_objects = [eval(v) for v in all_variables().keys() if v.startswith('WJ_')]
+
+  #baars_cpt_objects = [eval(v) for v in all_variables().keys() if v.startswith('CPT_') or v.startswith('BAARS_')]
+  baars_cpt_objects = [
+  
+  CPT_DET,
+  CPT_OMISSIONS,
+  CPT_COMMISSIONS,
+  CPT_PERSEVERATIONS,
+  CPT_HRT,
+  CPT_HRT_STD,
+  CPT_VAR,   
+  CPT_HRT_BLOCK,
+  CPT_HRT_ISI,
+  BAARS_INATTENTION,
+  BAARS_HYPERACTIVITY,  
+  BAARS_IMPULSIVITY,
+  BAARS_SLUGGISH,   
+  BAARS_TOTAL,
+  BAARS_INATTENTION_CHILD,
+  BAARS_HYPERACTIVITY_CHILD,
+  BAARS_TOTAL_CHILD] 
+  
+---
+### the rest of this code generates the various sections described in the above code block
+comment: |
+  This question is used to introduce your interview. Please customize.
+id: report
+continue button field: report_intro
+question: |
+  Welcome to PsychDocs
+subquestion: |
+  This web app allows you to input patient information and test scores and it will automatically generate 
+    a report in PDF and DOCX format based on the template you provided.
+    
+    Let's start by entering information about the patient.
+subquestion2: |
+  Patient Information
+fields:    
+  - "First": FIRST
+  - "Last": LAST
+  - "MPRN": MPRN
+  - "Eval date": EVAL_DATE_INPUT
+    datatype: date
+  - "Birth date": BIRTH_DATE_INPUT
+    datatype: date
+  - "Age": AGE
+  - "Education": EDUCATION
+  - "Informant first": INFORMANT_FIRST
+    required: False
+    default: "*INVALID RESPONSE*"
+  - "Informant last": INFORMANT_LAST
+    required: False
+    default: "*INVALID RESPONSE*"
+  - "Informant relation": INFORMANT_RELATION
+    required: False
+    default: "*INVALID RESPONSE*"
+  
+  - note: Would you like to add additional sections?
+#  - "Include reading test?": INCLUDE_READING_TEST
+#    datatype: yesno
+#  - "Include math test?": INCLUDE_MATH_TEST
+#    datatype: yesno
+  - "Include Academic Achievement?": INCLUDE_ACADEMIC_ACHIEVEMENT
+    datatype: yesno
+---
+####### Set Default Scores for Testing Purposes ###########
+code: |
+
+  RCFT_COPY_RECOG_CHOICES = get_choices(tab_name='rcft_copy_recog', variable='percentile')
+  LOGICALMEMORY_RECOG_CHOICES = get_choices(tab_name='logicalmemory_recog', variable='percentile')
+  STANDARD_CHOICES = get_choices(tab_name='standard', variable='score')
+  SCALED_CHOICES = get_choices(tab_name='scaled', variable='score')
+  BDI_CHOICES = get_choices(tab_name='bdi', variable='percentile')
+  BAI_CHOICES = get_choices(tab_name='bai', variable='percentile')
+  TSCORE_CHOICES = get_choices(tab_name='t score', variable='score')
+  BAARS_CHOICES = get_choices(tab_name='baars', variable='percentile')
+  CPT_CHOICES = get_choices(tab_name='cpt', variable='score')
+  CPT_HRT_CHOICES = get_choices(tab_name='cpt_hrt', variable='score')
+  
+  choices = {
+      'standard': STANDARD_CHOICES,
+      'scaled': SCALED_CHOICES,
+      'bdi': BDI_CHOICES,
+      'bai': BAI_CHOICES,
+      't score': TSCORE_CHOICES,
+      'rcft_copy_recog': RCFT_COPY_RECOG_CHOICES,
+      'logicalmemory_recog': LOGICALMEMORY_RECOG_CHOICES,
+      'baars': BAARS_CHOICES,
+      'cpt': CPT_CHOICES,
+      'cpt_hrt': CPT_HRT_CHOICES
+    }
+
+  if user_info().email == 'admin@admin.com':
+    USE_DEFAULTS = True
+    default_index = 1
+  else:
+    USE_DEFAULTS = False 
+
+---
+code: |    
+  def make_fields(variables):
+    score_fields = []
+    for variable in variables:
+      if USE_DEFAULTS:
+        defaults = choices[variable.type.lower()][default_index][0]
+      else:
+        defaults = ''
+        
+      score_fields.append({ 
+        "label": f"""{variable.instanceName.lower().replace('_', ' ')} (lookup: {variable.entry_type}, tab: {variable.type})""", 
+        "field": f"{str(variable.instanceName)}.{variable.entry_type}",
+        "default": defaults, 
+        "input type": variable.datatype, 
+        "choices": choices[variable.type.lower()],
+        "help": f"""lookup tab: {variable.type}, variable: {variable.entry_type}""",
+       # "validate": f""
+        }
+      )
+      
+    return score_fields
+
+  score_fields = make_fields(variable_objects)
+  wj_fields = make_fields(wj_objects)
+  baars_cpt_fields = make_fields(baars_cpt_objects)
+---
+mandatory: true
+id: Enter Scores
+#continue button field: next_page
+question: |
+  Enter Scores
+button color: new session
+fields:
+  code: score_fields + baars_cpt_fields
+
+validation code:
+  review_results = True
+---
+################### CALCULATIONS ########################################
+mandatory: false
+id: academic_achievement_fields
+continue button field: move_on
+question: |
+  You chose to include the academic achievement tests.
+button color: new session
+fields:
+  code: wj_fields
+---
+skip_undefined: true
+code : |
+    nav.set_section('review')
+---
+################# FINAL DOWNLOAD PAGE ###########################
+id: download report_lines
+event: report_download
+question: |
+  Download your report.
+subquestion: |
+  Thank you. Your form is ready to download and deliver.
+  
+  View, download and send your form below. Click the "Edit answers" button to fix any mistakes.
+
+  ${ action_button_html(url_action('review_answers'), label='Edit answers', color='info') }
+  
+  _PDF_ 
+  ${ al_user_bundle.download_list_html(format='pdf') }
+  
+
+  _Word Doc_
+  ${ al_user_bundle.download_list_html(format='docx') }
+  
+
+progress: 100
+---
+# ALDocument objects specify the metadata for each template
+objects:
+  - new_report_attachment: ALDocument.using(title=file_name, filename=file_name, enabled=True, has_addendum=False, )
+---
+# Bundles group the ALDocuments into separate downloads, such as for court and for the user
+objects:
+  - al_user_bundle: ALDocumentBundle.using(elements=[new_report_attachment], filename="New Report", title="All forms to download for your records", enabled=True, zip_label='', get_email_copy='', include_editable_documents='')
+---
+# Each attachment defines a key in an ALDocument. We use `i` as the placeholder here
+---
+code: |
+   #attachment_template = "template_empty_BAARS.docx"
+   #if INCLUDE_ACADEMIC_ACHIEVEMENT:
+   attachment_template = "template_objects.docx"
+##  else:
+
+---
+attachment:
+  name: new report
+  filename: new_report
+  variable name: new_report_attachment[i]
+  skip undefined: False # setting to False ensures all questions about defining variables are asked before getting to this screen
+  docx template file: {'code': attachment_template}
+---
+mandatory: true
+need:
+  - WTAR.score
+event: review_answers
+continue button field: download_report
+question: |
+  Review your data.
+subquestion: |
+  Please review the table below to confirm that everything looks good before we generate your document. If there are any issues with the values that you inputted, please go back and change them. If there are any issues with the calculated values, please contact the developer to have them fixed.
+  
+  _Patient Info:_
+  
+  Variable|Value
+  ------|----
+  First Name | ${ FIRST }
+  Last Name | ${ LAST }
+  Age| ${ AGE }
+  Date of Birth | ${ BIRTH_DATE }
+  Education Level | ${ EDUCATION }
+  Evaluation Date | ${ EVAL_DATE }
+  MPRN | ${ MPRN }
+  Informant First Name| ${ INFORMANT_FIRST }
+  Informant Last Name| ${ INFORMANT_LAST }
+  Informant Relation | ${ INFORMANT_RELATION }
+
+  
+  _Scores:_
+  
+  Variable|Score|Percentile|Qualification|
+  ----------|-------|------------|--------------
+  % for a in variable_objects + baars_cpt_objects:
+    ${ a.instanceName.lower().replace('_', ' ') } | ${ a.get_score() } | ${ a.get_percentile() } | ${ a.get_qualifier() }
+  % endfor
+  
+  % if INCLUDE_ACADEMIC_ACHIEVEMENT:
+  
+  Academic Achievement Scores:
+
+  Variable|Score|Percentile|Qualification|
+  ----------|-------|------------|--------------
+  % for a in wj_objects:
+    ${ a.instanceName.lower().replace('_', ' ') } | ${ a.get_score() } | ${ a.get_percentile() } | ${ a.get_qualifier() }
+  % endfor
+  % endif
+  

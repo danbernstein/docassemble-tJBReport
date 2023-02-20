@@ -1,0 +1,1321 @@
+---
+modules:
+  - docassemble.AssemblyLine.al_document
+  - .lookup_values
+---
+metadata:
+  title: |
+    Template 122722 lines
+  short title: |
+    Template 122722 lines
+  authors:
+    - System Administrator
+---
+## this block can be removed if we do not allow for objects in the input template
+##code:
+##  test = DAObject()
+##---
+mandatory: True
+comment: |
+  Global interview metadata
+variable name: template_122722_lines
+data:
+  al_weaver_version: "playground"
+  generated on: "2022-12-28"
+  title: >-
+    Template 122722 lines
+  short title: >-
+    Template 122722 lines
+  description: |-
+    Template 122722 lines
+  generate download screen: True
+---
+sections:
+  - review_template_122722_lines: Review your answers
+---
+#################### Interview order #####################
+comment: |
+  Controls order and branching logic for questions specific to this form
+id: interview_order_template_122722_lines
+code: |
+  nav.set_section("review_template_122722_lines")
+  interview_order_template_122722_lines = True
+---
+###################### Main order ######################
+comment: |
+  This block includes the logic for standalone interviews.
+  Delete mandatory: True to include in another interview
+mandatory: True
+code: |
+  ##al_intro_screen
+  template_122722_lines_intro
+  interview_order_template_122722_lines
+  template_122722_lines_download
+---
+comment: |
+  This question is used to introduce your interview. Please customize
+id: Template_122722_lines
+continue button field: template_122722_lines_intro
+question: |
+  Template 122722 lines
+subquestion: |
+  Template 122722 lines
+---
+mandatory: true
+id: Screen one
+question: |
+  Screen one
+fields:
+  - "Wtar score": WTAR_SCORE
+    datatype: integer
+  - "First": FIRST
+  - "Informant first": INFORMANT_FIRST
+  - "Informant relation": INFORMANT_RELATION
+  - "Informant last": INFORMANT_LAST
+  - "Age": AGE
+  - "Birth date": BIRTH_DATE
+  - "Last": LAST
+  - "Education": EDUCATION
+  - "Eval date": EVAL_DATE
+  - "Mprn": MPRN
+---
+
+mandatory: true
+id: Screen two
+question: |
+  Screen two
+fields:
+  - "Symbol search score": SYMBOL_SEARCH_SCORE
+    default: ${ WTAR_SCORE }
+
+  - "Cvlt false positives score": CVLT_FALSE_POSITIVES_SCORE
+    default: ${ WTAR_SCORE }
+
+  - "Arithmetic score": ARITHMETIC_SCORE
+    default: ${ WTAR_SCORE }
+
+  - "Cvlt trial 1 score": CVLT_TRIAL_1_SCORE
+    default: ${ WTAR_SCORE }
+  - "Digits forward score": DIGITS_FORWARD_SCORE
+    default: ${ WTAR_SCORE }
+  - "Word reading score": WORD_READING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Matrix reasoning score": MATRIX_REASONING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt list a total score": CVLT_LIST_A_TOTAL_SCORE
+    default: ${ WTAR_SCORE }
+  - "Block design score": BLOCK_DESIGN_SCORE
+    default: ${ WTAR_SCORE }
+  - "Logical memory ii score": LOGICAL_MEMORY_II_SCORE
+    default: ${ WTAR_SCORE }
+  - "Category switching accuracy score": CATEGORY_SWITCHING_ACCURACY_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt short delay free score": CVLT_SHORT_DELAY_FREE_SCORE
+    default: ${ WTAR_SCORE }
+  - "Vocabulary score": VOCABULARY_SCORE
+    default: ${ WTAR_SCORE }
+  - "Digits backward score": DIGITS_BACKWARD_SCORE
+    default: ${ WTAR_SCORE }
+  - "Pri score": PRI_SCORE
+    default: ${ WTAR_SCORE }
+  - "Psi score": PSI_SCORE
+    default: ${ WTAR_SCORE }
+  - "Digits sequence score": DIGITS_SEQUENCE_SCORE
+    default: ${ WTAR_SCORE }
+  - "Digit span score": DIGIT_SPAN_SCORE
+    default: ${ WTAR_SCORE }
+  - "Similarities score": SIMILARITIES_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt correct recognition hits score": CVLT_CORRECT_RECOGNITION_HITS_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt list b score": CVLT_LIST_B_SCORE
+    default: ${ WTAR_SCORE }
+  - "Vci score": VCI_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt long delay free score": CVLT_LONG_DELAY_FREE_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvl trial 4 score": CVL_TRIAL_4_SCORE
+    default: ${ WTAR_SCORE }
+  - "Information score": INFORMATION_SCORE
+    default: ${ WTAR_SCORE }
+  - "Letter fluency score": LETTER_FLUENCY_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt trial 3 score": CVLT_TRIAL_3_SCORE
+    default: ${ WTAR_SCORE }
+  - "Iq score": IQ_SCORE
+    default: ${ WTAR_SCORE }
+  - "Inhibition switching score": INHIBITION_SWITCHING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt trial 2 score": CVLT_TRIAL_2_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt long delayed cued score": CVLT_LONG_DELAYED_CUED_SCORE
+    default: ${ WTAR_SCORE }
+  - "Color naming score": COLOR_NAMING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Inhibition score": INHIBITION_SCORE
+    default: ${ WTAR_SCORE }
+  - "Trails b score": TRAILS_B_SCORE
+    default: ${ WTAR_SCORE }
+  - "Wmi score": WMI_SCORE
+    default: ${ WTAR_SCORE }
+  - "Coding score": CODING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Category switching score": CATEGORY_SWITCHING_SCORE
+    default: ${ WTAR_SCORE }
+  - "Visual puzzles score": VISUAL_PUZZLES_SCORE
+    default: ${ WTAR_SCORE }
+  - "Trails a score": TRAILS_A_SCORE
+    default: ${ WTAR_SCORE }
+  - "Rcft immediate score": RCFT_IMMEDIATE_SCORE
+    default: ${ WTAR_SCORE }
+  - "Cvlt short delay cued score": CVLT_SHORT_DELAY_CUED_SCORE
+    default: ${ WTAR_SCORE }
+  - "Category fluency score": CATEGORY_FLUENCY_SCORE
+    default: ${ WTAR_SCORE }
+
+---
+id: preview template_122722_lines
+question: |
+  Preview your form before you sign it
+subquestion: |
+  Here is a preview of the form you will sign on the next page.   
+  
+  ${ al_recipient_bundle.as_pdf(key='preview') }
+
+  Click the image to open it in a new tab. Click the "Edit answers" button
+  to edit your answers.
+
+  ${ action_button_html(url_action('review_template_122722_lines'), label='Edit answers', color='info') }
+  
+  Remember to come back to this window to continue and sign your form.
+continue button field: template_122722_lines_preview_question    
+---
+code: |
+  signature_fields = []
+---
+code: |
+  INFORMATION_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+  DIGIT_SPAN_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+  SYMBOL_SEARCH_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VOCABULARY_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_TRUE_POSITIVES_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  ARITHMETIC_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_TOTAL_CHILD_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CODING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LONG_DELAY_CUED_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_TOTAL_ADULT_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LIST_B_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_1_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LONG_DELAY_CUED_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_DELAYED_SCORE = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_RECOGNITION_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_5_SCORE = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  TRAILS_B_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WMI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_2_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  SYMBOL_SEARCH_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_1_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  TRAILS_A_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_SWITCHING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_IMMEDIATE_RECALL_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  MATRIX_REASONING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VISUAL_PUZZLES_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_FLUENCY_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_5_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_FALSE_POSITIVES_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_BACKWARD_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WTAR_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  INHIBITION_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_SHORT_DELAY_FREE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_FLUENCY_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_SLUGGISH_ADULT_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  TRAILS_A_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_SWITCHING_ACCURACY_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_II_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_FALSE_POSITIVES_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGIT_SPAN_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VISUAL_PUZZLES_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WMI_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_INATTENTION_CHILD_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  MATRIX_REASONING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  TRAILS_B_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LIST_A_LONG_DELAY_FREE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  PRI_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LETTER_FLUENCY_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_IMMEDIATE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_TOTAL_CHILD_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_COPY_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_DELAYED_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WTAR_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_I_SCORE = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  INFORMATION_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_DELAYED_RECALL_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LONG_DELAY_FREE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  SIMILARITIES_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  IQ_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  INHIBITION_SWITCHING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_I_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VOCABULARY_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_II_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_FORWARD_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_3_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_SHORT_DELAY_CUED_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  COLOR_NAMING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LETTER_FLUENCY_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_SEQUENCE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_HYPERACTIVITY_CHILD_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_3_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_TOTAL_ADULT_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_FORWARD_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_SHORT_DELAY_CUED_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_SEQUENCE_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CODING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_FALSE_POSITIVES_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  INHIBITION_SWITCHING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_IMMEDIATE_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BDI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_SLUGGISH_ADULT_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_SWITCHING_ACCURACY_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_DELAYED_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BLOCK_DESIGN_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CATEGORY_SWITCHING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_CORRECT_RECOGNITION_HITS_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_INATTENTION_ADULT_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_5_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  COLOR_NAMING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BLOCK_DESIGN_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_HYPERACTIVITY_CHILD_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_2_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_IMPULSIVITY_ADULT_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_CORRECT_RECOGNITION_HITS_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVL_TOTAL_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  ARITHMETIC_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  PRI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_SHORT_DELAY_FREE_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VCI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_COPY_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_HYPERACTIVITY_ADULT_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_4_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_TRIAL_4_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_INATTENTION_ADULT_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LONG_DELAY_FREE_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  PSI_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_INATTENTION_CHILD_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_HYPERACTIVITY_ADULT_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  INHIBITION_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WORD_READING_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LIST_A_SHORT_DELAY_FREE_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  DIGITS_BACKWARD_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  BAARS_IMPULSIVITY_ADULT_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  SIMILARITIES_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LIST_B_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  PSI_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  WORD_READING_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  RCFT_TRUE_POSITIVES_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  IQ_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  VCI_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_RECOGNITION_PERCENT = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  CVLT_LIST_A_TOTAL_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+code: |
+  LOGICAL_MEMORY_I_QUAL = get_score(value=WTAR_SCORE, tab_name='standard')
+---
+id: template 122722 lines review screen
+event: review_template_122722_lines
+question: |
+  Review your answers
+review:
+  - Edit: SYMBOL_SEARCH_QUAL
+    button: |
+      **Symbol search qual**:
+      ${ SYMBOL_SEARCH_QUAL }
+  - Edit: VOCABULARY_QUAL
+    button: |
+      **Vocabulary qual**:
+      ${ VOCABULARY_QUAL }
+  - Edit: SYMBOL_SEARCH_SCORE
+    button: |
+      **Symbol search score**:
+      ${ SYMBOL_SEARCH_SCORE }
+  - Edit: CVLT_FALSE_POSITIVES_SCORE
+    button: |
+      **Cvlt false positives score**:
+      ${ CVLT_FALSE_POSITIVES_SCORE }
+  - Edit: ARITHMETIC_SCORE
+    button: |
+      **Arithmetic score**:
+      ${ ARITHMETIC_SCORE }
+  - Edit: RCFT_TRUE_POSITIVES_QUAL
+    button: |
+      **Rcft true positives qual**:
+      ${ RCFT_TRUE_POSITIVES_QUAL }
+  - Edit: ARITHMETIC_PERCENT
+    button: |
+      **Arithmetic percent**:
+      ${ ARITHMETIC_PERCENT }
+  - Edit: BAARS_TOTAL_CHILD_PERCENT
+    button: |
+      **Baars total child percent**:
+      ${ BAARS_TOTAL_CHILD_PERCENT }
+  - Edit: CODING_QUAL
+    button: |
+      **Coding qual**:
+      ${ CODING_QUAL }
+  - Edit: CVLT_LONG_DELAY_CUED_PERCENT
+    button: |
+      **Cvlt long delay cued percent**:
+      ${ CVLT_LONG_DELAY_CUED_PERCENT }
+  - Edit: BAARS_TOTAL_ADULT_QUAL
+    button: |
+      **Baars total adult qual**:
+      ${ BAARS_TOTAL_ADULT_QUAL }
+  - Edit: CVLT_LIST_B_QUAL
+    button: |
+      **Cvlt list b qual**:
+      ${ CVLT_LIST_B_QUAL }
+  - Edit: CVLT_TRIAL_1_PERCENT
+    button: |
+      **Cvlt trial 1 percent**:
+      ${ CVLT_TRIAL_1_PERCENT }
+  - Edit: CVLT_LONG_DELAY_CUED_QUAL
+    button: |
+      **Cvlt long delay cued qual**:
+      ${ CVLT_LONG_DELAY_CUED_QUAL }
+  - Edit: RCFT_DELAYED_SCORE
+    button: |
+      **Rcft delayed score**:
+      ${ RCFT_DELAYED_SCORE }
+  - Edit: LOGICAL_MEMORY_RECOGNITION_QUAL
+    button: |
+      **Logical memory recognition qual**:
+      ${ LOGICAL_MEMORY_RECOGNITION_QUAL }
+  - Edit: CVLT_TRIAL_5_SCORE
+    button: |
+      **Cvlt trial 5 score**:
+      ${ CVLT_TRIAL_5_SCORE }
+  - Edit: TRAILS_B_PERCENT
+    button: |
+      **Trails b percent**:
+      ${ TRAILS_B_PERCENT }
+  - Edit: WMI_QUAL
+    button: |
+      **Wmi qual**:
+      ${ WMI_QUAL }
+  - Edit: CVLT_TRIAL_1_SCORE
+    button: |
+      **Cvlt trial 1 score**:
+      ${ CVLT_TRIAL_1_SCORE }
+  - Edit: CVLT_TRIAL_2_QUAL
+    button: |
+      **Cvlt trial 2 qual**:
+      ${ CVLT_TRIAL_2_QUAL }
+  - Edit: DIGITS_FORWARD_SCORE
+    button: |
+      **Digits forward score**:
+      ${ DIGITS_FORWARD_SCORE }
+  - Edit: SYMBOL_SEARCH_PERCENT
+    button: |
+      **Symbol search percent**:
+      ${ SYMBOL_SEARCH_PERCENT }
+  - Edit: INFORMANT_LAST
+    button: |
+      **Informant last**:
+      ${ INFORMANT_LAST }
+  - Edit: WORD_READING_SCORE
+    button: |
+      **Word reading score**:
+      ${ WORD_READING_SCORE }
+  - Edit: CVLT_TRIAL_1_QUAL
+    button: |
+      **Cvlt trial 1 qual**:
+      ${ CVLT_TRIAL_1_QUAL }
+  - Edit: TRAILS_A_QUAL
+    button: |
+      **Trails a qual**:
+      ${ TRAILS_A_QUAL }
+  - Edit: CATEGORY_SWITCHING_PERCENT
+    button: |
+      **Category switching percent**:
+      ${ CATEGORY_SWITCHING_PERCENT }
+  - Edit: RCFT_IMMEDIATE_RECALL_QUAL
+    button: |
+      **Rcft immediate recall qual**:
+      ${ RCFT_IMMEDIATE_RECALL_QUAL }
+  - Edit: MATRIX_REASONING_PERCENT
+    button: |
+      **Matrix reasoning percent**:
+      ${ MATRIX_REASONING_PERCENT }
+  - Edit: VISUAL_PUZZLES_PERCENT
+    button: |
+      **Visual puzzles percent**:
+      ${ VISUAL_PUZZLES_PERCENT }
+  - Edit: CATEGORY_FLUENCY_PERCENT
+    button: |
+      **Category fluency percent**:
+      ${ CATEGORY_FLUENCY_PERCENT }
+  - Edit: CVLT_TRIAL_5_PERCENT
+    button: |
+      **Cvlt trial 5 percent**:
+      ${ CVLT_TRIAL_5_PERCENT }
+  - Edit: RCFT_FALSE_POSITIVES_QUAL
+    button: |
+      **Rcft false positives qual**:
+      ${ RCFT_FALSE_POSITIVES_QUAL }
+  - Edit: DIGITS_BACKWARD_QUAL
+    button: |
+      **Digits backward qual**:
+      ${ DIGITS_BACKWARD_QUAL }
+  - Edit: WTAR_QUAL
+    button: |
+      **Wtar qual**:
+      ${ WTAR_QUAL }
+  - Edit: MATRIX_REASONING_SCORE
+    button: |
+      **Matrix reasoning score**:
+      ${ MATRIX_REASONING_SCORE }
+  - Edit: INHIBITION_PERCENT
+    button: |
+      **Inhibition percent**:
+      ${ INHIBITION_PERCENT }
+  - Edit: CVLT_SHORT_DELAY_FREE_QUAL
+    button: |
+      **Cvlt short delay free qual**:
+      ${ CVLT_SHORT_DELAY_FREE_QUAL }
+  - Edit: CATEGORY_FLUENCY_QUAL
+    button: |
+      **Category fluency qual**:
+      ${ CATEGORY_FLUENCY_QUAL }
+  - Edit: CVLT_LIST_A_TOTAL_SCORE
+    button: |
+      **Cvlt list a total score**:
+      ${ CVLT_LIST_A_TOTAL_SCORE }
+  - Edit: BLOCK_DESIGN_SCORE
+    button: |
+      **Block design score**:
+      ${ BLOCK_DESIGN_SCORE }
+  - Edit: LOGICAL_MEMORY_II_SCORE
+    button: |
+      **Logical memory ii score**:
+      ${ LOGICAL_MEMORY_II_SCORE }
+  - Edit: BAARS_SLUGGISH_ADULT_PERCENT
+    button: |
+      **Baars sluggish adult percent**:
+      ${ BAARS_SLUGGISH_ADULT_PERCENT }
+  - Edit: CATEGORY_SWITCHING_ACCURACY_SCORE
+    button: |
+      **Category switching accuracy score**:
+      ${ CATEGORY_SWITCHING_ACCURACY_SCORE }
+  - Edit: TRAILS_A_PERCENT
+    button: |
+      **Trails a percent**:
+      ${ TRAILS_A_PERCENT }
+  - Edit: CVLT_SHORT_DELAY_FREE_SCORE
+    button: |
+      **Cvlt short delay free score**:
+      ${ CVLT_SHORT_DELAY_FREE_SCORE }
+  - Edit: CATEGORY_SWITCHING_ACCURACY_QUAL
+    button: |
+      **Category switching accuracy qual**:
+      ${ CATEGORY_SWITCHING_ACCURACY_QUAL }
+  - Edit: LOGICAL_MEMORY_II_QUAL
+    button: |
+      **Logical memory ii qual**:
+      ${ LOGICAL_MEMORY_II_QUAL }
+  - Edit: VOCABULARY_SCORE
+    button: |
+      **Vocabulary score**:
+      ${ VOCABULARY_SCORE }
+  - Edit: CVLT_FALSE_POSITIVES_PERCENT
+    button: |
+      **Cvlt false positives percent**:
+      ${ CVLT_FALSE_POSITIVES_PERCENT }
+  - Edit: DIGIT_SPAN_PERCENT
+    button: |
+      **Digit span percent**:
+      ${ DIGIT_SPAN_PERCENT }
+  - Edit: VISUAL_PUZZLES_QUAL
+    button: |
+      **Visual puzzles qual**:
+      ${ VISUAL_PUZZLES_QUAL }
+  - Edit: AGE
+    button: |
+      **Age**:
+      ${ AGE }
+  - Edit: DIGITS_BACKWARD_SCORE
+    button: |
+      **Digits backward score**:
+      ${ DIGITS_BACKWARD_SCORE }
+  - Edit: WMI_PERCENT
+    button: |
+      **Wmi percent**:
+      ${ WMI_PERCENT }
+  - Edit: BAARS_INATTENTION_CHILD_QUAL
+    button: |
+      **Baars inattention child qual**:
+      ${ BAARS_INATTENTION_CHILD_QUAL }
+  - Edit: MATRIX_REASONING_QUAL
+    button: |
+      **Matrix reasoning qual**:
+      ${ MATRIX_REASONING_QUAL }
+  - Edit: TRAILS_B_QUAL
+    button: |
+      **Trails b qual**:
+      ${ TRAILS_B_QUAL }
+  - Edit: CVLT_LIST_A_LONG_DELAY_FREE_QUAL
+    button: |
+      **Cvlt list a long delay free qual**:
+      ${ CVLT_LIST_A_LONG_DELAY_FREE_QUAL }
+  - Edit: PRI_PERCENT
+    button: |
+      **Pri percent**:
+      ${ PRI_PERCENT }
+  - Edit: LETTER_FLUENCY_QUAL
+    button: |
+      **Letter fluency qual**:
+      ${ LETTER_FLUENCY_QUAL }
+  - Edit: RCFT_IMMEDIATE_QUAL
+    button: |
+      **Rcft immediate qual**:
+      ${ RCFT_IMMEDIATE_QUAL }
+  - Edit: BAARS_TOTAL_CHILD_QUAL
+    button: |
+      **Baars total child qual**:
+      ${ BAARS_TOTAL_CHILD_QUAL }
+  - Edit: RCFT_COPY_PERCENT
+    button: |
+      **Rcft copy percent**:
+      ${ RCFT_COPY_PERCENT }
+  - Edit: RCFT_DELAYED_QUAL
+    button: |
+      **Rcft delayed qual**:
+      ${ RCFT_DELAYED_QUAL }
+  - Edit: WTAR_PERCENT
+    button: |
+      **Wtar percent**:
+      ${ WTAR_PERCENT }
+  - Edit: LOGICAL_MEMORY_I_SCORE
+    button: |
+      **Logical memory i score**:
+      ${ LOGICAL_MEMORY_I_SCORE }
+  - Edit: PRI_SCORE
+    button: |
+      **Pri score**:
+      ${ PRI_SCORE }
+  - Edit: INFORMATION_QUAL
+    button: |
+      **Information qual**:
+      ${ INFORMATION_QUAL }
+  - Edit: PSI_SCORE
+    button: |
+      **Psi score**:
+      ${ PSI_SCORE }
+  - Edit: RCFT_DELAYED_RECALL_QUAL
+    button: |
+      **Rcft delayed recall qual**:
+      ${ RCFT_DELAYED_RECALL_QUAL }
+  - Edit: CVLT_LONG_DELAY_FREE_QUAL
+    button: |
+      **Cvlt long delay free qual**:
+      ${ CVLT_LONG_DELAY_FREE_QUAL }
+  - Edit: SIMILARITIES_QUAL
+    button: |
+      **Similarities qual**:
+      ${ SIMILARITIES_QUAL }
+  - Edit: IQ_QUAL
+    button: |
+      **Iq qual**:
+      ${ IQ_QUAL }
+  - Edit: INHIBITION_SWITCHING_PERCENT
+    button: |
+      **Inhibition switching percent**:
+      ${ INHIBITION_SWITCHING_PERCENT }
+  - Edit: DIGITS_SEQUENCE_SCORE
+    button: |
+      **Digits sequence score**:
+      ${ DIGITS_SEQUENCE_SCORE }
+  - Edit: LOGICAL_MEMORY_I_PERCENT
+    button: |
+      **Logical memory i percent**:
+      ${ LOGICAL_MEMORY_I_PERCENT }
+  - Edit: VOCABULARY_PERCENT
+    button: |
+      **Vocabulary percent**:
+      ${ VOCABULARY_PERCENT }
+  - Edit: LOGICAL_MEMORY_II_PERCENT
+    button: |
+      **Logical memory ii percent**:
+      ${ LOGICAL_MEMORY_II_PERCENT }
+  - Edit: DIGITS_FORWARD_PERCENT
+    button: |
+      **Digits forward percent**:
+      ${ DIGITS_FORWARD_PERCENT }
+  - Edit: CVLT_TRIAL_3_QUAL
+    button: |
+      **Cvlt trial 3 qual**:
+      ${ CVLT_TRIAL_3_QUAL }
+  - Edit: DIGIT_SPAN_SCORE
+    button: |
+      **Digit span score**:
+      ${ DIGIT_SPAN_SCORE }
+  - Edit: SIMILARITIES_SCORE
+    button: |
+      **Similarities score**:
+      ${ SIMILARITIES_SCORE }
+  - Edit: CVLT_CORRECT_RECOGNITION_HITS_SCORE
+    button: |
+      **Cvlt correct recognition hits score**:
+      ${ CVLT_CORRECT_RECOGNITION_HITS_SCORE }
+  - Edit: CVLT_SHORT_DELAY_CUED_QUAL
+    button: |
+      **Cvlt short delay cued qual**:
+      ${ CVLT_SHORT_DELAY_CUED_QUAL }
+  - Edit: COLOR_NAMING_QUAL
+    button: |
+      **Color naming qual**:
+      ${ COLOR_NAMING_QUAL }
+  - Edit: LETTER_FLUENCY_PERCENT
+    button: |
+      **Letter fluency percent**:
+      ${ LETTER_FLUENCY_PERCENT }
+  - Edit: DIGITS_SEQUENCE_QUAL
+    button: |
+      **Digits sequence qual**:
+      ${ DIGITS_SEQUENCE_QUAL }
+  - Edit: BAARS_HYPERACTIVITY_CHILD_PERCENT
+    button: |
+      **Baars hyperactivity child percent**:
+      ${ BAARS_HYPERACTIVITY_CHILD_PERCENT }
+  - Edit: INFORMATION_PERCENT
+    button: |
+      **Information percent**:
+      ${ INFORMATION_PERCENT }
+  - Edit: DIGIT_SPAN_QUAL
+    button: |
+      **Digit span qual**:
+      ${ DIGIT_SPAN_QUAL }
+  - Edit: CVLT_LIST_B_SCORE
+    button: |
+      **Cvlt list b score**:
+      ${ CVLT_LIST_B_SCORE }
+  - Edit: EDUCATION
+    button: |
+      **Education**:
+      ${ EDUCATION }
+  - Edit: VCI_SCORE
+    button: |
+      **Vci score**:
+      ${ VCI_SCORE }
+  - Edit: CVLT_TRIAL_3_PERCENT
+    button: |
+      **Cvlt trial 3 percent**:
+      ${ CVLT_TRIAL_3_PERCENT }
+  - Edit: BAARS_TOTAL_ADULT_PERCENT
+    button: |
+      **Baars total adult percent**:
+      ${ BAARS_TOTAL_ADULT_PERCENT }
+  - Edit: CVLT_LONG_DELAY_FREE_SCORE
+    button: |
+      **Cvlt long delay free score**:
+      ${ CVLT_LONG_DELAY_FREE_SCORE }
+  - Edit: CVL_TRIAL_4_SCORE
+    button: |
+      **Cvl trial 4 score**:
+      ${ CVL_TRIAL_4_SCORE }
+  - Edit: DIGITS_FORWARD_QUAL
+    button: |
+      **Digits forward qual**:
+      ${ DIGITS_FORWARD_QUAL }
+  - Edit: CVLT_SHORT_DELAY_CUED_PERCENT
+    button: |
+      **Cvlt short delay cued percent**:
+      ${ CVLT_SHORT_DELAY_CUED_PERCENT }
+  - Edit: DIGITS_SEQUENCE_PERCENT
+    button: |
+      **Digits sequence percent**:
+      ${ DIGITS_SEQUENCE_PERCENT }
+  - Edit: CODING_PERCENT
+    button: |
+      **Coding percent**:
+      ${ CODING_PERCENT }
+  - Edit: CVLT_FALSE_POSITIVES_QUAL
+    button: |
+      **Cvlt false positives qual**:
+      ${ CVLT_FALSE_POSITIVES_QUAL }
+  - Edit: INFORMATION_SCORE
+    button: |
+      **Information score**:
+      ${ INFORMATION_SCORE }
+  - Edit: INHIBITION_SWITCHING_QUAL
+    button: |
+      **Inhibition switching qual**:
+      ${ INHIBITION_SWITCHING_QUAL }
+  - Edit: LETTER_FLUENCY_SCORE
+    button: |
+      **Letter fluency score**:
+      ${ LETTER_FLUENCY_SCORE }
+  - Edit: CVLT_TRIAL_3_SCORE
+    button: |
+      **Cvlt trial 3 score**:
+      ${ CVLT_TRIAL_3_SCORE }
+  - Edit: IQ_SCORE
+    button: |
+      **Iq score**:
+      ${ IQ_SCORE }
+  - Edit: MPRN
+    button: |
+      **Mprn**:
+      ${ MPRN }
+  - Edit: RCFT_IMMEDIATE_PERCENT
+    button: |
+      **Rcft immediate percent**:
+      ${ RCFT_IMMEDIATE_PERCENT }
+  - Edit: BDI_QUAL
+    button: |
+      **Bdi qual**:
+      ${ BDI_QUAL }
+  - Edit: INHIBITION_SWITCHING_SCORE
+    button: |
+      **Inhibition switching score**:
+      ${ INHIBITION_SWITCHING_SCORE }
+  - Edit: BAARS_SLUGGISH_ADULT_QUAL
+    button: |
+      **Baars sluggish adult qual**:
+      ${ BAARS_SLUGGISH_ADULT_QUAL }
+  - Edit: CATEGORY_SWITCHING_ACCURACY_PERCENT
+    button: |
+      **Category switching accuracy percent**:
+      ${ CATEGORY_SWITCHING_ACCURACY_PERCENT }
+  - Edit: RCFT_DELAYED_PERCENT
+    button: |
+      **Rcft delayed percent**:
+      ${ RCFT_DELAYED_PERCENT }
+  - Edit: BLOCK_DESIGN_QUAL
+    button: |
+      **Block design qual**:
+      ${ BLOCK_DESIGN_QUAL }
+  - Edit: CATEGORY_SWITCHING_QUAL
+    button: |
+      **Category switching qual**:
+      ${ CATEGORY_SWITCHING_QUAL }
+  - Edit: CVLT_TRIAL_2_SCORE
+    button: |
+      **Cvlt trial 2 score**:
+      ${ CVLT_TRIAL_2_SCORE }
+  - Edit: CVLT_CORRECT_RECOGNITION_HITS_PERCENT
+    button: |
+      **Cvlt correct recognition hits percent**:
+      ${ CVLT_CORRECT_RECOGNITION_HITS_PERCENT }
+  - Edit: BAARS_INATTENTION_ADULT_QUAL
+    button: |
+      **Baars inattention adult qual**:
+      ${ BAARS_INATTENTION_ADULT_QUAL }
+  - Edit: CVLT_TRIAL_5_QUAL
+    button: |
+      **Cvlt trial 5 qual**:
+      ${ CVLT_TRIAL_5_QUAL }
+  - Edit: COLOR_NAMING_PERCENT
+    button: |
+      **Color naming percent**:
+      ${ COLOR_NAMING_PERCENT }
+  - Edit: BIRTH_DATE
+    button: |
+      **Birth date**:
+      ${ BIRTH_DATE }
+  - Edit: BLOCK_DESIGN_PERCENT
+    button: |
+      **Block design percent**:
+      ${ BLOCK_DESIGN_PERCENT }
+  - Edit: CVLT_LONG_DELAYED_CUED_SCORE
+    button: |
+      **Cvlt long delayed cued score**:
+      ${ CVLT_LONG_DELAYED_CUED_SCORE }
+  - Edit: COLOR_NAMING_SCORE
+    button: |
+      **Color naming score**:
+      ${ COLOR_NAMING_SCORE }
+  - Edit: BAARS_HYPERACTIVITY_CHILD_QUAL
+    button: |
+      **Baars hyperactivity child qual**:
+      ${ BAARS_HYPERACTIVITY_CHILD_QUAL }
+  - Edit: CVLT_TRIAL_2_PERCENT
+    button: |
+      **Cvlt trial 2 percent**:
+      ${ CVLT_TRIAL_2_PERCENT }
+  - Edit: BAI_QUAL
+    button: |
+      **Bai qual**:
+      ${ BAI_QUAL }
+  - Edit: BAARS_IMPULSIVITY_ADULT_QUAL
+    button: |
+      **Baars impulsivity adult qual**:
+      ${ BAARS_IMPULSIVITY_ADULT_QUAL }
+  - Edit: INHIBITION_SCORE
+    button: |
+      **Inhibition score**:
+      ${ INHIBITION_SCORE }
+  - Edit: LAST
+    button: |
+      **Last**:
+      ${ LAST }
+  - Edit: CVLT_CORRECT_RECOGNITION_HITS_QUAL
+    button: |
+      **Cvlt correct recognition hits qual**:
+      ${ CVLT_CORRECT_RECOGNITION_HITS_QUAL }
+  - Edit: CVL_TOTAL_PERCENT
+    button: |
+      **Cvl total percent**:
+      ${ CVL_TOTAL_PERCENT }
+  - Edit: ARITHMETIC_QUAL
+    button: |
+      **Arithmetic qual**:
+      ${ ARITHMETIC_QUAL }
+  - Edit: PRI_QUAL
+    button: |
+      **Pri qual**:
+      ${ PRI_QUAL }
+  - Edit: CVLT_SHORT_DELAY_FREE_PERCENT
+    button: |
+      **Cvlt short delay free percent**:
+      ${ CVLT_SHORT_DELAY_FREE_PERCENT }
+  - Edit: VCI_QUAL
+    button: |
+      **Vci qual**:
+      ${ VCI_QUAL }
+  - Edit: TRAILS_B_SCORE
+    button: |
+      **Trails b score**:
+      ${ TRAILS_B_SCORE }
+  - Edit: RCFT_COPY_QUAL
+    button: |
+      **Rcft copy qual**:
+      ${ RCFT_COPY_QUAL }
+  - Edit: BAARS_HYPERACTIVITY_ADULT_QUAL
+    button: |
+      **Baars hyperactivity adult qual**:
+      ${ BAARS_HYPERACTIVITY_ADULT_QUAL }
+  - Edit: WMI_SCORE
+    button: |
+      **Wmi score**:
+      ${ WMI_SCORE }
+  - Edit: CVLT_TRIAL_4_QUAL
+    button: |
+      **Cvlt trial 4 qual**:
+      ${ CVLT_TRIAL_4_QUAL }
+  - Edit: CODING_SCORE
+    button: |
+      **Coding score**:
+      ${ CODING_SCORE }
+  - Edit: CVLT_TRIAL_4_PERCENT
+    button: |
+      **Cvlt trial 4 percent**:
+      ${ CVLT_TRIAL_4_PERCENT }
+  - Edit: BAARS_INATTENTION_ADULT_PERCENT
+    button: |
+      **Baars inattention adult percent**:
+      ${ BAARS_INATTENTION_ADULT_PERCENT }
+  - Edit: CVLT_LONG_DELAY_FREE_PERCENT
+    button: |
+      **Cvlt long delay free percent**:
+      ${ CVLT_LONG_DELAY_FREE_PERCENT }
+  - Edit: PSI_PERCENT
+    button: |
+      **Psi percent**:
+      ${ PSI_PERCENT }
+  - Edit: BAARS_INATTENTION_CHILD_PERCENT
+    button: |
+      **Baars inattention child percent**:
+      ${ BAARS_INATTENTION_CHILD_PERCENT }
+  - Edit: BAARS_HYPERACTIVITY_ADULT_PERCENT
+    button: |
+      **Baars hyperactivity adult percent**:
+      ${ BAARS_HYPERACTIVITY_ADULT_PERCENT }
+  - Edit: INHIBITION_QUAL
+    button: |
+      **Inhibition qual**:
+      ${ INHIBITION_QUAL }
+  - Edit: WORD_READING_PERCENT
+    button: |
+      **Word reading percent**:
+      ${ WORD_READING_PERCENT }
+  - Edit: CVLT_LIST_A_SHORT_DELAY_FREE_QUAL
+    button: |
+      **Cvlt list a short delay free qual**:
+      ${ CVLT_LIST_A_SHORT_DELAY_FREE_QUAL }
+  - Edit: CATEGORY_SWITCHING_SCORE
+    button: |
+      **Category switching score**:
+      ${ CATEGORY_SWITCHING_SCORE }
+  - Edit: DIGITS_BACKWARD_PERCENT
+    button: |
+      **Digits backward percent**:
+      ${ DIGITS_BACKWARD_PERCENT }
+  - Edit: EVAL_DATE
+    button: |
+      **Eval date**:
+      ${ EVAL_DATE }
+  - Edit: BAARS_IMPULSIVITY_ADULT_PERCENT
+    button: |
+      **Baars impulsivity adult percent**:
+      ${ BAARS_IMPULSIVITY_ADULT_PERCENT }
+  - Edit: VISUAL_PUZZLES_SCORE
+    button: |
+      **Visual puzzles score**:
+      ${ VISUAL_PUZZLES_SCORE }
+  - Edit: TRAILS_A_SCORE
+    button: |
+      **Trails a score**:
+      ${ TRAILS_A_SCORE }
+  - Edit: SIMILARITIES_PERCENT
+    button: |
+      **Similarities percent**:
+      ${ SIMILARITIES_PERCENT }
+  - Edit: CVLT_LIST_B_PERCENT
+    button: |
+      **Cvlt list b percent**:
+      ${ CVLT_LIST_B_PERCENT }
+  - Edit: RCFT_IMMEDIATE_SCORE
+    button: |
+      **Rcft immediate score**:
+      ${ RCFT_IMMEDIATE_SCORE }
+  - Edit: PSI_QUAL
+    button: |
+      **Psi qual**:
+      ${ PSI_QUAL }
+  - Edit: CVLT_SHORT_DELAY_CUED_SCORE
+    button: |
+      **Cvlt short delay cued score**:
+      ${ CVLT_SHORT_DELAY_CUED_SCORE }
+  - Edit: WORD_READING_QUAL
+    button: |
+      **Word reading qual**:
+      ${ WORD_READING_QUAL }
+  - Edit: CATEGORY_FLUENCY_SCORE
+    button: |
+      **Category fluency score**:
+      ${ CATEGORY_FLUENCY_SCORE }
+  - Edit: FIRST
+    button: |
+      **First**:
+      ${ FIRST }
+  - Edit: WTAR_SCORE
+    button: |
+      **Wtar score**:
+      ${ WTAR_SCORE }
+  - Edit: RCFT_TRUE_POSITIVES_PERCENT
+    button: |
+      **Rcft true positives percent**:
+      ${ RCFT_TRUE_POSITIVES_PERCENT }
+  - Edit: IQ_PERCENT
+    button: |
+      **Iq percent**:
+      ${ IQ_PERCENT }
+  - Edit: VCI_PERCENT
+    button: |
+      **Vci percent**:
+      ${ VCI_PERCENT }
+  - Edit: LOGICAL_MEMORY_RECOGNITION_PERCENT
+    button: |
+      **Logical memory recognition percent**:
+      ${ LOGICAL_MEMORY_RECOGNITION_PERCENT }
+  - Edit: CVLT_LIST_A_TOTAL_QUAL
+    button: |
+      **Cvlt list a total qual**:
+      ${ CVLT_LIST_A_TOTAL_QUAL }
+  - Edit: LOGICAL_MEMORY_I_QUAL
+    button: |
+      **Logical memory i qual**:
+      ${ LOGICAL_MEMORY_I_QUAL }
+  - Edit: INFORMANT_FIRST
+    button: |
+      **Informant first**:
+      ${ INFORMANT_FIRST }
+  - Edit: INFORMANT_RELATION
+    button: |
+      **Informant relation**:
+      ${ INFORMANT_RELATION }
+---
+id: download template_122722_lines
+event: template_122722_lines_download
+question: |
+  All done
+subquestion: |
+  Thank you. Your form is ready to download and deliver.
+  
+  View, download and send your form below. Click the "Edit answers" button to fix any mistakes.
+
+  ${ action_button_html(url_action('review_template_122722_lines'), label='Edit answers', color='info') }
+  
+  PDF
+  
+  ${ al_user_bundle.download_list_html(format='pdf') }
+  
+
+  Word Doc
+  
+  ${ al_user_bundle.download_list_html(format='docx') }
+  
+
+  ${ al_user_bundle.send_button_html(show_editable_checkbox=True) }
+
+progress: 100
+---
+# ALDocument objects specify the metadata for each template
+objects:
+  - template_122722_lines_attachment: ALDocument.using(title="Template 122722 lines", filename="template_122722_lines", enabled=True, has_addendum=False, )
+---
+# Bundles group the ALDocuments into separate downloads, such as for court and for the user
+objects:
+  - al_user_bundle: ALDocumentBundle.using(elements=[template_122722_lines_attachment], filename="template_122722_lines", title="All forms to download for your records", enabled=True, zip_label='', get_email_copy='', include_editable_documents='')
+---
+# Each attachment defines a key in an ALDocument. We use `i` as the placeholder here so the same template is 
+# used for "preview" and "final" keys, and logic in the template checks the value of 
+# `i` to show or hide the user's signature
+---
+attachment:
+  name: template 122722 lines
+  filename: template_122722_lines
+  variable name: template_122722_lines_attachment[i]
+  skip undefined: False # setting to False ensures all questions about defining variables are asked before getting to this screen
+  docx template file: template_122722_lines.docx
+
